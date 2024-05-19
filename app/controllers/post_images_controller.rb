@@ -21,7 +21,6 @@ class PostImagesController < ApplicationController
 #ここまで
   end
 
-
   def index
     @post_images = PostImage.all
   end
