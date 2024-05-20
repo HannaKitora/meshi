@@ -6,18 +6,25 @@ class PostImagesController < ApplicationController
   def create
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
+    if @post_image.save
+      redirect_to post_images_path
+    else
+      render :new
+    end
+  
 
 #訂正
     # @post_image.save
-    # redirect_to post_images_path #一覧画面ind　#curex
-    if @post_image.save
-      # 画像データの保存処理
-      @post_image.image.attach(params[:post_image][:image])
-      redirect_to post_images_path
-    else
-      flash.now[:error] = "画像の保存に失敗しました"
-      render :new
-    end
+    # redirect_to post_images_path
+    
+    # if @post_image.save
+    #   # 画像データの保存処理
+    #   @post_image.image.attach(params[:post_image][:image])
+    #   redirect_to post_images_path
+    # else
+    #   flash.now[:error] = "画像の保存に失敗しました"
+    #   render :new
+    # end
 #ここまで
   end
 
